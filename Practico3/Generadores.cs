@@ -70,7 +70,7 @@ namespace Practico3
             {
                 Double a= Math.Pow((Math.E), Convert.ToDouble(-lambda));
                 Double b = 1;
-                Decimal i = 0;
+                Decimal i = -1;
                 do
                 {
                     Double xi = rnd.NextDouble();

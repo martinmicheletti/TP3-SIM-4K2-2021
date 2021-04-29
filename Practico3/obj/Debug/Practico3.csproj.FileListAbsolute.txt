@@ -74,3 +74,23 @@ C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Const
 C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csproj.CoreCompileInputs.cache
 C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.exe
 C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.pdb
+C:\Users\marti\OneDrive\Escritorio\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\bin\Debug\Practico3.exe.config
+C:\Users\marti\OneDrive\Escritorio\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\bin\Debug\Practico3.exe
+C:\Users\marti\OneDrive\Escritorio\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\bin\Debug\Practico3.pdb
+C:\Users\marti\OneDrive\Escritorio\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csprojAssemblyReference.cache
+C:\Users\marti\OneDrive\Escritorio\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.Properties.Resources.resources
+C:\Users\marti\OneDrive\Escritorio\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.Test.resources
+C:\Users\marti\OneDrive\Escritorio\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csproj.GenerateResource.cache
+C:\Users\marti\OneDrive\Escritorio\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csproj.CoreCompileInputs.cache
+C:\Users\marti\OneDrive\Escritorio\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.exe
+C:\Users\marti\OneDrive\Escritorio\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.pdb
+C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\bin\Debug\Practico3.exe.config
+C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\bin\Debug\Practico3.exe
+C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\bin\Debug\Practico3.pdb
+C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csprojAssemblyReference.cache
+C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.Properties.Resources.resources
+C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.Test.resources
+C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csproj.GenerateResource.cache
+C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csproj.CoreCompileInputs.cache
+C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.exe
+C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.pdb

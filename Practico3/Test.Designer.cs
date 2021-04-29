@@ -413,9 +413,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(12, 650);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(351, 24);
+            this.label5.Size = new System.Drawing.Size(473, 24);
             this.label5.TabIndex = 31;
-            this.label5.Text = "Constantin - Loza - Micheletti - Soaje";
+            this.label5.Text = "Aresu - Barella -Bruna - Loza - Micheletti - Soruco";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // tabControl1
@@ -435,7 +435,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1110, 487);
+            this.tabPage1.Size = new System.Drawing.Size(1106, 487);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Variables";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -454,7 +454,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1110, 487);
+            this.tabPage2.Size = new System.Drawing.Size(1106, 487);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Test de Chi Cuadrado";
             this.tabPage2.UseVisualStyleBackColor = true;
