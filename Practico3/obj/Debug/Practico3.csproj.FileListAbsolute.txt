@@ -1,0 +1,76 @@
+C:\Users\ANTONELLA\Documents\Visual Studio 2012\Projects\Practico3\Practico3\bin\Debug\Practico3.exe.config
+C:\Users\ANTONELLA\Documents\Visual Studio 2012\Projects\Practico3\Practico3\bin\Debug\Practico3.exe
+C:\Users\ANTONELLA\Documents\Visual Studio 2012\Projects\Practico3\Practico3\bin\Debug\Practico3.pdb
+C:\Users\ANTONELLA\Documents\Visual Studio 2012\Projects\Practico3\Practico3\obj\Debug\Practico3.Practico3.resources
+C:\Users\ANTONELLA\Documents\Visual Studio 2012\Projects\Practico3\Practico3\obj\Debug\Practico3.Properties.Resources.resources
+C:\Users\ANTONELLA\Documents\Visual Studio 2012\Projects\Practico3\Practico3\obj\Debug\Practico3.csproj.GenerateResource.Cache
+C:\Users\ANTONELLA\Documents\Visual Studio 2012\Projects\Practico3\Practico3\obj\Debug\Practico3.exe
+C:\Users\ANTONELLA\Documents\Visual Studio 2012\Projects\Practico3\Practico3\obj\Debug\Practico3.pdb
+C:\Users\ANTONELLA\Documents\Visual Studio 2012\Projects\Practico3\Practico3\obj\Debug\Practico3.csprojResolveAssemblyReference.cache
+G:\Practico3\Practico3\bin\Debug\Practico3.exe.config
+G:\Practico3\Practico3\obj\Debug\Practico3.exe
+G:\Practico3\Practico3\obj\Debug\Practico3.pdb
+G:\Practico3\Practico3\bin\Debug\Practico3.exe
+G:\Practico3\Practico3\bin\Debug\Practico3.pdb
+G:\Practico3\Practico3\obj\Debug\Practico3.csprojResolveAssemblyReference.cache
+G:\Practico3\Practico3\obj\Debug\Practico3.Properties.Resources.resources
+G:\Practico3\Practico3\obj\Debug\Practico3.csproj.GenerateResource.Cache
+I:\Practico3\Practico3\bin\Debug\Practico3.exe.config
+I:\Practico3\Practico3\obj\Debug\Practico3.exe
+I:\Practico3\Practico3\obj\Debug\Practico3.pdb
+I:\Practico3\Practico3\bin\Debug\Practico3.exe
+I:\Practico3\Practico3\bin\Debug\Practico3.pdb
+I:\Practico3\Practico3\obj\Debug\Practico3.csprojResolveAssemblyReference.cache
+I:\Practico3\Practico3\obj\Debug\Practico3.Properties.Resources.resources
+I:\Practico3\Practico3\obj\Debug\Practico3.csproj.GenerateResource.Cache
+G:\Practico3\Practico3\obj\Debug\Practico3.Test.resources
+I:\Practico3\Practico3\obj\Debug\Practico3.Test.resources
+E:\Practico3\Practico3\bin\Debug\Practico3.exe.config
+E:\Practico3\Practico3\obj\Debug\Practico3.exe
+E:\Practico3\Practico3\obj\Debug\Practico3.pdb
+E:\Practico3\Practico3\bin\Debug\Practico3.exe
+E:\Practico3\Practico3\bin\Debug\Practico3.pdb
+E:\Practico3\Practico3\obj\Debug\Practico3.csprojResolveAssemblyReference.cache
+E:\Practico3\Practico3\obj\Debug\Practico3.Properties.Resources.resources
+E:\Practico3\Practico3\obj\Debug\Practico3.Test.resources
+E:\Practico3\Practico3\obj\Debug\Practico3.csproj.GenerateResource.Cache
+C:\Users\JuanSoaje\Documents\SIM\TRABAJOS PRACTICOS GRUPO\TP3\Practico3\Practico3\bin\Debug\Practico3.exe.config
+C:\Users\JuanSoaje\Documents\SIM\TRABAJOS PRACTICOS GRUPO\TP3\Practico3\Practico3\bin\Debug\Practico3.exe
+C:\Users\JuanSoaje\Documents\SIM\TRABAJOS PRACTICOS GRUPO\TP3\Practico3\Practico3\bin\Debug\Practico3.pdb
+C:\Users\JuanSoaje\Documents\SIM\TRABAJOS PRACTICOS GRUPO\TP3\Practico3\Practico3\obj\Debug\Practico3.csprojAssemblyReference.cache
+C:\Users\JuanSoaje\Documents\SIM\TRABAJOS PRACTICOS GRUPO\TP3\Practico3\Practico3\obj\Debug\Practico3.Properties.Resources.resources
+C:\Users\JuanSoaje\Documents\SIM\TRABAJOS PRACTICOS GRUPO\TP3\Practico3\Practico3\obj\Debug\Practico3.Test.resources
+C:\Users\JuanSoaje\Documents\SIM\TRABAJOS PRACTICOS GRUPO\TP3\Practico3\Practico3\obj\Debug\Practico3.csproj.GenerateResource.cache
+C:\Users\JuanSoaje\Documents\SIM\TRABAJOS PRACTICOS GRUPO\TP3\Practico3\Practico3\obj\Debug\Practico3.csproj.CoreCompileInputs.cache
+C:\Users\JuanSoaje\Documents\SIM\TRABAJOS PRACTICOS GRUPO\TP3\Practico3\Practico3\obj\Debug\Practico3.exe
+C:\Users\JuanSoaje\Documents\SIM\TRABAJOS PRACTICOS GRUPO\TP3\Practico3\Practico3\obj\Debug\Practico3.pdb
+C:\Users\Martin\Desktop\SIM\Practico3\Practico3\bin\Debug\Practico3.exe.config
+C:\Users\Martin\Desktop\SIM\Practico3\Practico3\bin\Debug\Practico3.exe
+C:\Users\Martin\Desktop\SIM\Practico3\Practico3\bin\Debug\Practico3.pdb
+C:\Users\Martin\Desktop\SIM\Practico3\Practico3\obj\Debug\Practico3.csprojAssemblyReference.cache
+C:\Users\Martin\Desktop\SIM\Practico3\Practico3\obj\Debug\Practico3.Properties.Resources.resources
+C:\Users\Martin\Desktop\SIM\Practico3\Practico3\obj\Debug\Practico3.Test.resources
+C:\Users\Martin\Desktop\SIM\Practico3\Practico3\obj\Debug\Practico3.csproj.GenerateResource.cache
+C:\Users\Martin\Desktop\SIM\Practico3\Practico3\obj\Debug\Practico3.csproj.CoreCompileInputs.cache
+C:\Users\Martin\Desktop\SIM\Practico3\Practico3\obj\Debug\Practico3.exe
+C:\Users\Martin\Desktop\SIM\Practico3\Practico3\obj\Debug\Practico3.pdb
+C:\Users\Martin\Desktop\SIM\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\bin\Debug\Practico3.exe.config
+C:\Users\Martin\Desktop\SIM\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\bin\Debug\Practico3.exe
+C:\Users\Martin\Desktop\SIM\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\bin\Debug\Practico3.pdb
+C:\Users\Martin\Desktop\SIM\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csprojAssemblyReference.cache
+C:\Users\Martin\Desktop\SIM\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.Properties.Resources.resources
+C:\Users\Martin\Desktop\SIM\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.Test.resources
+C:\Users\Martin\Desktop\SIM\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csproj.GenerateResource.cache
+C:\Users\Martin\Desktop\SIM\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csproj.CoreCompileInputs.cache
+C:\Users\Martin\Desktop\SIM\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.exe
+C:\Users\Martin\Desktop\SIM\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.pdb
+C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\bin\Debug\Practico3.exe.config
+C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\bin\Debug\Practico3.exe
+C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\bin\Debug\Practico3.pdb
+C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csprojAssemblyReference.cache
+C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.Properties.Resources.resources
+C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.Test.resources
+C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csproj.GenerateResource.cache
+C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csproj.CoreCompileInputs.cache
+C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.exe
+C:\Users\Martin\Downloads\TP3_Constantini, Loza, Micheletti, Soaje (1)\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.pdb
