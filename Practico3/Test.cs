@@ -501,6 +501,8 @@ namespace Practico3
                     throw new Exception("Ingrese un valor para el parámetro 'a'");
                 if (txtBUniforme.Text == String.Empty)
                     throw new Exception("Ingrese un valor para el parámetro 'b'");
+                if (Convert.ToDouble(txtAUniforme.Text) >= Convert.ToDouble(txtBUniforme.Text))
+                    throw new Exception("El valor 'B' ingresado debe ser mayor a el valor 'A'");
             }
 
             if (rbdNormal.Checked)
@@ -519,6 +521,7 @@ namespace Practico3
             {
                 if (txtLambda.Text == String.Empty)
                     throw new Exception("Lambda es un valor requerido!");
+
             }
         }
 
