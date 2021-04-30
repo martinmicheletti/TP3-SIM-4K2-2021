@@ -8,14 +8,14 @@ namespace Practico3
 {
     class Generadores
     {
-        public List<Decimal> distUniforme(Decimal cant, Decimal a, Decimal b)
+        public List<Double> distUniforme(Double cant, Double a, Double b)
         { 
-            List<Decimal> lista = new List<Decimal>();
+            List<Double> lista = new List<Double>();
             Random rnd = new Random();
             for (int i = 0; i < cant; i++)
             {
-                Decimal nro = Convert.ToDecimal(rnd.NextDouble());//random del lenguaje
-                Decimal nroAleat = a + (nro * (b - a));// nro dist uniforme q se agrega a la lista
+                Double nro = Convert.ToDouble(rnd.NextDouble());//random del lenguaje
+                Double nroAleat = a + (nro * (b - a));// nro dist uniforme q se agrega a la lista
                 lista.Add(Math.Round(nroAleat,6));
 
             }
@@ -23,38 +23,38 @@ namespace Practico3
             return lista;
         }
 
-        public List<Decimal> distNormal(Decimal cant, Decimal media, Decimal desviacion)
+        public List<Double> distNormal(Double cant, Double media, Double desviacion)
         {
-            List<Decimal> lista = new List<Decimal>();
+            List<Double> lista = new List<Double>();
             //Método de convolución
             Random rnd = new Random();
             for (int i = 0; i < cant; i++)
             {
                 
-                Decimal suma = 0;
+                Double suma = 0;
                 for (int j = 0; j < 12; j++)
                 {
                     
-                    Decimal aleat = Math.Round(Convert.ToDecimal(rnd.NextDouble()),6);
+                    Double aleat = Math.Round(Convert.ToDouble(rnd.NextDouble()),6);
                     suma = suma + aleat;
                 }
-                Decimal z = ((suma - 6) * desviacion) + media;
-                lista.Add(Convert.ToDecimal(z));
+                Double z = ((suma - 6) * desviacion) + media;
+                lista.Add(Convert.ToDouble(z));
             }
             return lista;
         }
 
 
-        public List<Decimal> distExponencial(Decimal cant, Decimal media) 
+        public List<Double> distExponencial(Double cant, Double media) 
         {
-            List<Decimal> lista = new List<Decimal>();
+            List<Double> lista = new List<Double>();
             Random rnd = new Random();
             for (int i = 0; i < cant; i++)
             {
-                Decimal nro = Convert.ToDecimal(rnd.NextDouble());//random del lenguaje
-                Decimal lambda = 1 / media;
-                Decimal log= Convert.ToDecimal(Math.Log(Convert.ToDouble(1-nro)));
-                Decimal nroAleat = (-1 / lambda) * log;
+                Double nro = Convert.ToDouble(rnd.NextDouble());//random del lenguaje
+                Double lambda = 1 / media;
+                Double log= Convert.ToDouble(Math.Log(Convert.ToDouble(1-nro)));
+                Double nroAleat = (-1 / lambda) * log;
 
                 lista.Add(Math.Round(nroAleat,6));
             }
@@ -62,9 +62,9 @@ namespace Practico3
 
             return lista;
         }
-        public List<Decimal> distPoisson(Decimal cant, Decimal lambda) 
+        public List<Double> distPoisson(Double cant, Double lambda) 
         {
-            List<Decimal> lista = new List<Decimal>();
+            List<Double> lista = new List<Double>();
             Random rnd=new Random();
 
             for (int j=0; j < cant; j++)
@@ -72,7 +72,7 @@ namespace Practico3
                 Double a= Math.Pow((Math.E), Convert.ToDouble(-lambda));
 
                 Double p = 1;
-                Decimal x = -1;
+                Double x = -1;
                 do
                 {
                     Double xi = rnd.NextDouble();

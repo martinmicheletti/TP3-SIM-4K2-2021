@@ -14,17 +14,16 @@ namespace Practico3
     {
         System.Data.DataTable dt;
         System.Data.DataTable dtTest;
-        public Decimal grados_libertad = 0;
+        public Double grados_libertad = 0;
 
         string[] listaChipcuadrada = new string[] {"3,84", "5,99", "7,81", "9,49", "11,14", "12,6", "14,1", "15,5", "16,9", "18,3", "19,7", "21,0", "22,4", "23,7", "25,0", "26.3", "26,3",
-                             "27,6", "28,9", "30,1", "31,4", "32,7", "33.9", "35,2", "36,4", "37,7", "38,9", "40,1", "41,3", "42,6", "43,8", "", "", "", "", "", "", "", "", "", "55,8",
+                             "27,6", "28,9", "30,1", "31,4", "32,7", "33.9", "35,2", "36,4", "37,7", "38,9", "40,1", "41,3", "42,6", "43,8", "44,98", "46,19", "47,39", "48,60", "49,80", "51", "52,19", "53,38", "54,57", "55,8",
                              "", "", "", "", "", "", "", "", "", "67,5", "", "", "", "", "", "", "", "", "", "79,1", "", "", "", "", "", "", "", "", "", "90,5", "", "", "", "", "", "",
                              "", "", "", "101,9", "", "", "", "", "", "", "", "", "", "113,1", "", "", "", "", "", "", "", "", "", "124,3" };
 
         public Test()
         {
             InitializeComponent();
-
             txtIntervalos.Text = "";
         }
 
@@ -38,21 +37,25 @@ namespace Practico3
             if (rbdUniforme.Checked)
             {
                 pnlUniforme.Visible = true;
+                txtIntervalos.Visible = true;
             }
 
             if (rbdNormal.Checked)
             {
                 pnlNormal.Visible = true;
+                txtIntervalos.Visible = true;
             }
 
             if (rbdExponencial.Checked)
             {
                 pnlExponencial.Visible = true;
+                txtIntervalos.Visible = true;
             }
 
             if (rbdPoisson.Checked)
             {
                 pnlPoisson.Visible = true;
+                txtIntervalos.Visible = false;
             }
         }
 
@@ -64,33 +67,31 @@ namespace Practico3
                 //limpiarGrafico();
 
                 Generadores clase = new Generadores();
-                List<Decimal> lista = new List<Decimal>();
-                Decimal cant = Convert.ToDecimal(txtCantidad.Text);
+                List<Double> lista = new List<Double>();
+                Double cant = Convert.ToDouble(txtCantidad.Text);
 
                 if (rbdUniforme.Checked)
                 {
-                    Decimal a = Convert.ToDecimal(txtAUniforme.Text);
-                    Decimal b = Convert.ToDecimal(txtBUniforme.Text);
+                    Double a = Convert.ToDouble(txtAUniforme.Text);
+                    Double b = Convert.ToDouble(txtBUniforme.Text);
                     lista = clase.distUniforme(cant, a, b);
                 }
                 if (rbdExponencial.Checked)
                 {
-                    Decimal media = Convert.ToDecimal(txtMediaExpo.Text);
+                    Double media = Convert.ToDouble(txtMediaExpo.Text);
                     lista = clase.distExponencial(cant, media);
                 }
                 if (rbdNormal.Checked)
                 {
-                    Decimal media = Convert.ToDecimal(txtMediaNormal.Text);
-                    Decimal desviacion = Convert.ToDecimal(txtDesviacion.Text);
+                    Double media = Convert.ToDouble(txtMediaNormal.Text);
+                    Double desviacion = Convert.ToDouble(txtDesviacion.Text);
                     lista = clase.distNormal(cant, media, desviacion);
                 }
                 if (rbdPoisson.Checked)
                 {
-                    Decimal lambda = Convert.ToDecimal(txtLambda.Text);
+                    Double lambda = Convert.ToDouble(txtLambda.Text);
                     lista = clase.distPoisson(cant, lambda);
-
                 }
-
 
                 listValores.Items.Clear();
                 foreach (decimal item in lista)
@@ -99,35 +100,42 @@ namespace Practico3
                 }
 
                 //TEST!
-                Double cantInt = Convert.ToDouble(txtIntervalos.Text);
-
+                //Double cantInt = Convert.ToDouble(txtIntervalos.Text);
 
                 //valor desde hasta de la serie
 
                 Double minimo = 0;
                 Double maximo = 0;
+                Double cantInt = 0;
                 
                 if (rbdUniforme.Checked || rbdNormal.Checked)
                 {
                     minimo = Convert.ToDouble(lista.Min());
                     maximo = Convert.ToDouble(lista.Max());
+                    cantInt = Convert.ToDouble(txtIntervalos.Text);
                 }
-                if (rbdExponencial.Checked || rbdPoisson.Checked)
+                if (rbdExponencial.Checked)
                 {
                     minimo = 0;
                     maximo = Convert.ToDouble(lista.Max());
+                    cantInt = Convert.ToDouble(txtIntervalos.Text);
+                }
+                if (rbdPoisson.Checked)
+                {
+                    minimo = Convert.ToDouble(lista.Min());
+                    maximo = Convert.ToDouble(lista.Max());
+                    cantInt = maximo - minimo;
                 }
 
                 Double longitud = maximo - minimo;
                 Double tamaño_intervalo = Math.Round((longitud / cantInt), 6);
-
                 Double desdeInt = minimo;
 
-                Decimal suma = 0;
+                Double suma = 0;
 
                 if (rbdUniforme.Checked)
                 {
-                    grados_libertad = (Convert.ToDecimal(cantInt) - 1);
+                    grados_libertad = (Convert.ToDouble(cantInt) - 1);
 
                     Double potencia = 0;
                     Double resta = 0;
@@ -146,15 +154,15 @@ namespace Practico3
                     Double varianzaUniforme = Math.Pow((b - a), 2) / 12;
 
                     dt = new System.Data.DataTable();
-                    dt.Columns.Add("Nro Intervalo", typeof(Decimal));
-                    dt.Columns.Add("Desde", typeof(Decimal));
-                    dt.Columns.Add("Hasta", typeof(Decimal));
-                    dt.Columns.Add("Marca de Clase", typeof(Decimal));
-                    dt.Columns.Add("fo", typeof(Decimal));
-                    dt.Columns.Add("fe", typeof(Decimal));
-                    dt.Columns.Add("Resta", typeof(Decimal));
-                    dt.Columns.Add("Potencia", typeof(Decimal));
-                    dt.Columns.Add("Division", typeof(Decimal));
+                    dt.Columns.Add("Nro Intervalo", typeof(Double));
+                    dt.Columns.Add("Desde", typeof(Double));
+                    dt.Columns.Add("Hasta", typeof(Double));
+                    dt.Columns.Add("Marca de Clase", typeof(Double));
+                    dt.Columns.Add("fo", typeof(Double));
+                    dt.Columns.Add("fe", typeof(Double));
+                    dt.Columns.Add("Resta", typeof(Double));
+                    dt.Columns.Add("Potencia", typeof(Double));
+                    dt.Columns.Add("Division", typeof(Double));
 
                     //lleno el vector de fo 
                     for (int i = 1; i <= cantInt; i++)
@@ -191,32 +199,29 @@ namespace Practico3
 
                     foreach (DataRow dr2 in dt.Rows)
                     {
-                        suma = suma + Convert.ToDecimal(dr2["Division"]);
+                        suma = suma + Convert.ToDouble(dr2["Division"]);
                     }
-
-
                 }
-
 
                 if (rbdExponencial.Checked)
                 {
                     // GDL = Intervalos - 1 - 1 dato empirico (lambda)
-                    grados_libertad = (Convert.ToDecimal(cantInt) - 1 - 1);
+                    grados_libertad = (Convert.ToDouble(cantInt) - 1 - 1);
 
                     Double potencia = 0;
                     Double resta = 0;
                     Double division = 0;
 
                     dt = new System.Data.DataTable();
-                    dt.Columns.Add("Nro Intervalo", typeof(Decimal));
-                    dt.Columns.Add("Desde", typeof(Decimal));
-                    dt.Columns.Add("Hasta", typeof(Decimal));
-                    dt.Columns.Add("Marca de Clase", typeof(Decimal));
-                    dt.Columns.Add("fo", typeof(Decimal));
-                    dt.Columns.Add("fe", typeof(Decimal));
-                    dt.Columns.Add("Resta", typeof(Decimal));
-                    dt.Columns.Add("Potencia", typeof(Decimal));
-                    dt.Columns.Add("Division", typeof(Decimal));
+                    dt.Columns.Add("Nro Intervalo", typeof(Double));
+                    dt.Columns.Add("Desde", typeof(Double));
+                    dt.Columns.Add("Hasta", typeof(Double));
+                    dt.Columns.Add("Marca de Clase", typeof(Double));
+                    dt.Columns.Add("fo", typeof(Double));
+                    dt.Columns.Add("fe", typeof(Double));
+                    dt.Columns.Add("Resta", typeof(Double));
+                    dt.Columns.Add("Potencia", typeof(Double));
+                    dt.Columns.Add("Division", typeof(Double));
 
                     Double cantidad = Convert.ToDouble(txtCantidad.Text);
 
@@ -228,6 +233,7 @@ namespace Practico3
                         Double marcaClase = (hastaInt + desdeInt) / 2;
 
                         Double acumMedia = 0;
+
                         for (int j = 0; j < cantidad; j++)
                         {
                             if (Convert.ToDouble(lista[j]) < hastaInt && Convert.ToDouble(lista[j]) >= desdeInt) //no incluye el limite superior
@@ -235,12 +241,10 @@ namespace Practico3
                                 fo = fo + 1;
                             }
                             acumMedia = acumMedia + Convert.ToDouble(lista[j]);
-
                         }
+
                         Double media = acumMedia / cantidad;
                         Double lambda = 1 / media;
-
-
                         Double probAprox = 0;
                         Double fe = 0;
 
@@ -257,59 +261,59 @@ namespace Practico3
 
                         dt.Rows.Add(i, desdeInt, hastaInt, marcaClase, fo, fe,resta,potencia,division);
 
-                        
-
                         grafico.Series["FO"].Points.AddXY(marcaClase, fo);
                         grafico.Series["FE"].Points.AddXY(marcaClase, fe);
 
-
                         desdeInt = desdeInt + tamaño_intervalo;
-
                     }
 
                     foreach (DataRow dr2 in dt.Rows)
                     {
-                        suma = suma + Convert.ToDecimal(dr2["Division"]);
+                        suma = suma + Convert.ToDouble(dr2["Division"]);
                     }
                 }
 
-
                 if (rbdNormal.Checked)
                 {
-                    grados_libertad = (Convert.ToDecimal(cantInt) - 2);
+                    grados_libertad = (Convert.ToDouble(cantInt) - 2);
                     Double potencia = 0;
                     Double resta = 0;
                     Double division = 0;
+
                     //calculo media
                     Double cantidad = Convert.ToDouble(txtCantidad.Text);
                     Double acumMedia = 0;
+
                     for (int i = 0; i < lista.Count; i++)
                     {
                         acumMedia = Convert.ToDouble(lista[i]) + acumMedia;
                     }
+
                     Double mediaNormal = acumMedia / cantidad;
 
                     //Calculo varianza
                     Double sumaVar = 0;
+
                     for (int i = 0; i < lista.Count; i++)
                     {
                         Double resta_var = Math.Abs(Convert.ToDouble(lista[i]) - mediaNormal);
                         Double potencia_var = Convert.ToDouble(Math.Pow(Convert.ToDouble(resta_var), 2));
                         sumaVar = sumaVar + potencia_var;
                     }
+
                     Double producto = (1 / (cantidad - 1)) * sumaVar;
                     Double varianza = Convert.ToDouble(Math.Sqrt(Convert.ToDouble(producto)));
 
                     dt = new System.Data.DataTable();
-                    dt.Columns.Add("Nro Intervalo", typeof(Decimal));
-                    dt.Columns.Add("Desde", typeof(Decimal));
-                    dt.Columns.Add("Hasta", typeof(Decimal));
-                    dt.Columns.Add("Marca de Clase", typeof(Decimal));
-                    dt.Columns.Add("fo", typeof(Decimal));
-                    dt.Columns.Add("fe", typeof(Decimal));
-                    dt.Columns.Add("Resta", typeof(Decimal));
-                    dt.Columns.Add("Potencia", typeof(Decimal));
-                    dt.Columns.Add("Division", typeof(Decimal));
+                    dt.Columns.Add("Nro Intervalo", typeof(Double));
+                    dt.Columns.Add("Desde", typeof(Double));
+                    dt.Columns.Add("Hasta", typeof(Double));
+                    dt.Columns.Add("Marca de Clase", typeof(Double));
+                    dt.Columns.Add("fo", typeof(Double));
+                    dt.Columns.Add("fe", typeof(Double));
+                    dt.Columns.Add("Resta", typeof(Double));
+                    dt.Columns.Add("Potencia", typeof(Double));
+                    dt.Columns.Add("Division", typeof(Double));
 
                     //lleno el vector de fo 
                     for (int i = 1; i <= cantInt; i++)
@@ -317,8 +321,6 @@ namespace Practico3
                         Double hastaInt = desdeInt + tamaño_intervalo;
                         Double fo = 0;
                         Double fe = 0;
-
-
                         Double marcaClase = (hastaInt + desdeInt) / 2;
 
                         for (int j = 0; j < Convert.ToInt32(txtCantidad.Text); j++)
@@ -330,8 +332,6 @@ namespace Practico3
                         }
 
                         Double probAprox = 0;
-
-
                         Double factor1 = 1 / (varianza * (Convert.ToDouble(Math.Sqrt(2 * Math.PI))));
                         Double exponente = Convert.ToDouble(Math.Pow(Convert.ToDouble(((marcaClase - mediaNormal) / varianza)), 2));
                         Double factor2 = Convert.ToDouble(Math.Exp(Convert.ToDouble(Convert.ToDouble(-0.5) * exponente)));
@@ -355,15 +355,16 @@ namespace Practico3
 
                     foreach (DataRow dr2 in dt.Rows)
                     {
-                        suma = suma + Convert.ToDecimal(dr2["Division"]);
-                    }
-
-                    
+                        suma = suma + Convert.ToDouble(dr2["Division"]);
+                    } 
                 }
 
                 if (rbdPoisson.Checked)
                 {
-                    tamaño_intervalo = Math.Ceiling((maximo - minimo) / cantInt);
+                    grados_libertad = (Convert.ToDouble(cantInt) - 2);
+                    //tamaño_intervalo = Math.Ceiling((maximo - minimo) / cantInt);
+
+                    tamaño_intervalo = 1;
 
                     Double lamda = Convert.ToDouble(txtLambda.Text);
                     Double potencia = 0;
@@ -371,15 +372,15 @@ namespace Practico3
                     Double division = 0;
 
                     dt = new System.Data.DataTable();
-                    dt.Columns.Add("Nro Intervalo", typeof(Decimal));
-                    dt.Columns.Add("Desde", typeof(Decimal));
-                    dt.Columns.Add("Hasta", typeof(Decimal));
-                    dt.Columns.Add("Marca de Clase", typeof(Decimal));
-                    dt.Columns.Add("fo", typeof(Decimal));
-                    dt.Columns.Add("fe", typeof(Decimal));
-                    dt.Columns.Add("Resta", typeof(Decimal));
-                    dt.Columns.Add("Potencia", typeof(Decimal));
-                    dt.Columns.Add("Division", typeof(Decimal));
+                    dt.Columns.Add("Nro Intervalo", typeof(Double));
+                    dt.Columns.Add("Desde", typeof(Double));
+                    dt.Columns.Add("Hasta", typeof(Double));
+                    dt.Columns.Add("Marca de Clase", typeof(Double));
+                    dt.Columns.Add("fo", typeof(Double));
+                    dt.Columns.Add("fe", typeof(Double));
+                    dt.Columns.Add("Resta", typeof(Double));
+                    dt.Columns.Add("Potencia", typeof(Double));
+                    dt.Columns.Add("Division", typeof(Double));
 
                     Double frecuenciaEsperadaTotal = 0;
                     //lleno el vector de fo 
@@ -408,46 +409,45 @@ namespace Practico3
                         for (int x = 1; x <= marcaClase; x++)
                         {
                             factor2 = factor2 * x;
-
                         }
 
                         probAprox = factor1 / factor2;
                         
-
                         fe = Math.Round((probAprox * Convert.ToDouble(cantidad)), 4);
                         frecuenciaEsperadaTotal += fe;
 
                         resta = fo - fe;
                         potencia = Math.Round(Math.Pow(Convert.ToDouble(resta), 2), 4);
-                        division = Math.Round((potencia / fe), 4);
 
+                        if (fe == 0)
+                        {
+                            division = 0;
+                        } else
+                        {
+                            division = Math.Round((potencia / fe), 4);
+                        }
+                       
                         dt.Rows.Add(i, desdeInt, hastaInt, marcaClase, fo, fe, resta, potencia, division);
 
                         grafico.Series["FO"].Points.AddXY(marcaClase, fo);
                         grafico.Series["FE"].Points.AddXY(marcaClase, fe);
 
                         desdeInt = desdeInt + tamaño_intervalo;
-
                     }
 
                     foreach (DataRow dr2 in dt.Rows)
                     {
-                        suma = suma + Convert.ToDecimal(dr2["Division"]);
+                        suma = suma + Convert.ToDouble(dr2["Division"]);
                     }
 
-
-
+                    dt.Rows.Add(0,0,0,0,0,frecuenciaEsperadaTotal,0,0,0);
                 }
-
-
 
                 Double xCalculado = Convert.ToDouble(Math.Round(suma, 6));
 
-              
-
                 Double xTabulado = Convert.ToDouble(listaChipcuadrada[Convert.ToInt32(grados_libertad)]);
 
-                lblRdo.Text = Convert.ToString(xCalculado);
+                lblRdo.Text = xCalculado.ToString();
 
                 lblXiTabulado.Text = Convert.ToString(xTabulado);
 
@@ -455,13 +455,11 @@ namespace Practico3
                 {
                     lblResultado.Text = "NO RECHAZADO";
                     lblResultado.ForeColor = Color.Green;
-
                 }
                 else
                 {
                     lblResultado.Text =  "RECHAZADO";
                     lblResultado.ForeColor = Color.Red;
-
                 }
 
                 lblGradosLibertad.Text = "Grados de Libertad: " + grados_libertad;
@@ -473,18 +471,12 @@ namespace Practico3
 
                 gvTest.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 gvTest.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, "Generadores", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
-
 
         private void limpiarGrafico()
         {
@@ -492,6 +484,7 @@ namespace Practico3
             grafico.Series.Clear();
             grafico.ChartAreas.Clear();
         }
+
         private void validaciones()
         {
             if (txtCantidad.Text == String.Empty)
@@ -545,29 +538,17 @@ namespace Practico3
             txtIntervalos.Text = "";
             txtAUniforme.Text = "";
             txtBUniforme.Text = "";
-
+            txtIntervalos.Visible = true;
             listValores.Items.Clear();
 
+            rbdUniforme.Checked = false;
+            rbdNormal.Checked = false;
+            rbdPoisson.Checked = false;
+            rbdExponencial.Checked = false;
+
             gvTest.DataSource = null;
-           
-            
+
             lblRdo.Text = String.Empty;
-            
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbmIntervalos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void rbdUniforme_CheckedChanged(object sender, EventArgs e)

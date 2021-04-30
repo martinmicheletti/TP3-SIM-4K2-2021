@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pnlPoisson = new System.Windows.Forms.Panel();
             this.txtLambda = new System.Windows.Forms.TextBox();
             this.lblLambda = new System.Windows.Forms.Label();
@@ -70,6 +70,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtIntervalos = new System.Windows.Forms.TextBox();
             this.pnlUniforme = new System.Windows.Forms.Panel();
             this.txtBUniforme = new System.Windows.Forms.TextBox();
             this.txtAUniforme = new System.Windows.Forms.TextBox();
@@ -77,7 +78,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rbdUniforme = new System.Windows.Forms.RadioButton();
-            this.txtIntervalos = new System.Windows.Forms.TextBox();
             this.pnlPoisson.SuspendLayout();
             this.pnlNormal.SuspendLayout();
             this.pnlExponencial.SuspendLayout();
@@ -206,7 +206,7 @@
             // 
             this.rbdPoisson.AutoSize = true;
             this.rbdPoisson.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbdPoisson.Location = new System.Drawing.Point(18, 78);
+            this.rbdPoisson.Location = new System.Drawing.Point(18, 73);
             this.rbdPoisson.Margin = new System.Windows.Forms.Padding(4);
             this.rbdPoisson.Name = "rbdPoisson";
             this.rbdPoisson.Size = new System.Drawing.Size(75, 20);
@@ -219,7 +219,7 @@
             // 
             this.rbdNormal.AutoSize = true;
             this.rbdNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbdNormal.Location = new System.Drawing.Point(18, 61);
+            this.rbdNormal.Location = new System.Drawing.Point(18, 50);
             this.rbdNormal.Margin = new System.Windows.Forms.Padding(4);
             this.rbdNormal.Name = "rbdNormal";
             this.rbdNormal.Size = new System.Drawing.Size(70, 20);
@@ -275,20 +275,20 @@
             // 
             // grafico
             // 
-            chartArea3.Name = "ChartArea1";
-            this.grafico.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.grafico.Legends.Add(legend3);
+            chartArea4.Name = "ChartArea1";
+            this.grafico.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.grafico.Legends.Add(legend4);
             this.grafico.Location = new System.Drawing.Point(0, 0);
             this.grafico.Name = "grafico";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "FO";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "FE";
-            this.grafico.Series.Add(series5);
-            this.grafico.Series.Add(series6);
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "FO";
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "FE";
+            this.grafico.Series.Add(series7);
+            this.grafico.Series.Add(series8);
             this.grafico.Size = new System.Drawing.Size(1103, 433);
             this.grafico.TabIndex = 3;
             this.grafico.Text = "chart1";
@@ -405,10 +405,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(12, 650);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(473, 24);
+            this.label5.Size = new System.Drawing.Size(479, 24);
             this.label5.TabIndex = 31;
-            this.label5.Text = "Aresu - Barella -Bruna - Loza - Micheletti - Soruco";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            this.label5.Text = "Aresu - Barella - Bruna - Loza - Micheletti - Soruco";
             // 
             // tabControl1
             // 
@@ -450,7 +449,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Test de Chi Cuadrado";
             this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // tabPage3
             // 
@@ -492,13 +490,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parámetros";
             // 
+            // txtIntervalos
+            // 
+            this.txtIntervalos.Location = new System.Drawing.Point(234, 60);
+            this.txtIntervalos.Name = "txtIntervalos";
+            this.txtIntervalos.Size = new System.Drawing.Size(115, 20);
+            this.txtIntervalos.TabIndex = 32;
+            // 
             // pnlUniforme
             // 
             this.pnlUniforme.Controls.Add(this.txtBUniforme);
             this.pnlUniforme.Controls.Add(this.txtAUniforme);
             this.pnlUniforme.Controls.Add(this.label8);
             this.pnlUniforme.Controls.Add(this.label9);
-            this.pnlUniforme.Location = new System.Drawing.Point(549, 86);
+            this.pnlUniforme.Location = new System.Drawing.Point(546, 26);
             this.pnlUniforme.Name = "pnlUniforme";
             this.pnlUniforme.Size = new System.Drawing.Size(410, 57);
             this.pnlUniforme.TabIndex = 20;
@@ -552,7 +557,7 @@
             // 
             this.rbdUniforme.AutoSize = true;
             this.rbdUniforme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbdUniforme.Location = new System.Drawing.Point(18, 33);
+            this.rbdUniforme.Location = new System.Drawing.Point(18, 24);
             this.rbdUniforme.Margin = new System.Windows.Forms.Padding(4);
             this.rbdUniforme.Name = "rbdUniforme";
             this.rbdUniforme.Size = new System.Drawing.Size(80, 20);
@@ -560,13 +565,6 @@
             this.rbdUniforme.Text = "Uniforme";
             this.rbdUniforme.UseVisualStyleBackColor = true;
             this.rbdUniforme.CheckedChanged += new System.EventHandler(this.Test_Load);
-            // 
-            // txtIntervalos
-            // 
-            this.txtIntervalos.Location = new System.Drawing.Point(234, 60);
-            this.txtIntervalos.Name = "txtIntervalos";
-            this.txtIntervalos.Size = new System.Drawing.Size(115, 20);
-            this.txtIntervalos.TabIndex = 32;
             // 
             // Test
             // 
