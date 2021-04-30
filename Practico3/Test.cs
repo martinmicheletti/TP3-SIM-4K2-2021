@@ -25,16 +25,20 @@ namespace Practico3
         {
             InitializeComponent();
 
-            cbmIntervalos.SelectedItem = "5";
+            txtIntervalos.Text = "";
         }
 
         private void Test_Load(object sender, EventArgs e)
         {
-            
+            pnlUniforme.Visible = false;
             pnlExponencial.Visible = false;
             pnlNormal.Visible = false;
             pnlPoisson.Visible = false;
-            
+
+            if (rbdUniforme.Checked)
+            {
+                pnlUniforme.Visible = true;
+            }
 
             if (rbdNormal.Checked)
             {
@@ -56,14 +60,19 @@ namespace Practico3
         {
             try
             {
-                
                 validaciones();
                 //limpiarGrafico();
 
                 Generadores clase = new Generadores();
                 List<Decimal> lista = new List<Decimal>();
                 Decimal cant = Convert.ToDecimal(txtCantidad.Text);
-               
+
+                if (rbdUniforme.Checked)
+                {
+                    Decimal a = Convert.ToDecimal(txtAUniforme.Text);
+                    Decimal b = Convert.ToDecimal(txtBUniforme.Text);
+                    lista = clase.distUniforme(cant, a, b);
+                }
                 if (rbdExponencial.Checked)
                 {
                     Decimal media = Convert.ToDecimal(txtMediaExpo.Text);
@@ -90,43 +99,52 @@ namespace Practico3
                 }
 
                 //TEST!
-                Decimal cantInt = Convert.ToDecimal(cbmIntervalos.SelectedItem);
+                Double cantInt = Convert.ToDouble(txtIntervalos.Text);
 
 
                 //valor desde hasta de la serie
-               
-                Decimal minimo = 0;
-                Decimal maximo = 0;
+
+                Double minimo = 0;
+                Double maximo = 0;
                 
-                if (rbdNormal.Checked || rbdPoisson.Checked)
+                if (rbdUniforme.Checked || rbdNormal.Checked)
                 {
-                    minimo = lista.Min();
-                    maximo = lista.Max();
+                    minimo = Convert.ToDouble(lista.Min());
+                    maximo = Convert.ToDouble(lista.Max());
                 }
-                if (rbdExponencial.Checked)
+                if (rbdExponencial.Checked || rbdPoisson.Checked)
                 {
                     minimo = 0;
-                    maximo = lista.Max();
+                    maximo = Convert.ToDouble(lista.Max());
                 }
-                //poisson???
 
+                Double longitud = maximo - minimo;
+                Double tamaño_intervalo = Math.Round((longitud / cantInt), 6);
 
-                Decimal longitud = maximo - minimo;
-                Decimal tamaño_intervalo = Math.Round((longitud / cantInt), 6);
-
-                Decimal desdeInt = minimo;
+                Double desdeInt = minimo;
 
                 Decimal suma = 0;
 
-            
-
-                if (rbdExponencial.Checked)
+                if (rbdUniforme.Checked)
                 {
-                    grados_libertad = (cantInt - 1); 
+                    grados_libertad = (Convert.ToDecimal(cantInt) - 1);
 
-                    Decimal potencia = 0;
-                    Decimal resta = 0;
-                    Decimal division = 0;
+                    Double potencia = 0;
+                    Double resta = 0;
+                    Double division = 0;
+
+                    var a = Convert.ToDouble(txtAUniforme.Text);
+                    var b = Convert.ToDouble(txtBUniforme.Text);
+
+                    //calculo media
+                    Double mediaUniforme = (a + b) / 2;
+
+                    Double cantidad = Convert.ToDouble(txtCantidad.Text);
+
+                    //Calculo varianza
+
+                    Double varianzaUniforme = Math.Pow((b - a), 2) / 12;
+
                     dt = new System.Data.DataTable();
                     dt.Columns.Add("Nro Intervalo", typeof(Decimal));
                     dt.Columns.Add("Desde", typeof(Decimal));
@@ -138,39 +156,103 @@ namespace Practico3
                     dt.Columns.Add("Potencia", typeof(Decimal));
                     dt.Columns.Add("Division", typeof(Decimal));
 
-                    Decimal cantidad = Convert.ToDecimal(txtCantidad.Text);
+                    //lleno el vector de fo 
+                    for (int i = 1; i <= cantInt; i++)
+                    {
+                        Double hastaInt = desdeInt + tamaño_intervalo;
+                        Double fo = 0;
+                        Double fe = 0;
+
+                        Double marcaClase = (hastaInt + desdeInt) / 2;
+
+                        for (int j = 0; j < cantidad; j++)
+                        {
+                            if (Convert.ToDouble(lista[j]) < hastaInt && Convert.ToDouble(lista[j]) >= desdeInt) //no incluye el limite superior
+                            {
+                                fo = fo + 1;
+                            }
+                        }
+
+                        Double funcionDensidad = 1 / (b - a);
+
+                        fe = (Math.Round((funcionDensidad * Convert.ToDouble(tamaño_intervalo)), 4)) * cantidad;
+                        resta = fo - fe;
+                        potencia = Math.Round(Convert.ToDouble(Math.Pow(Convert.ToDouble(resta), 2)), 4);
+                        division = Math.Round((potencia / fe), 4);
+
+                        dt.Rows.Add(i, desdeInt, hastaInt, marcaClase, fo, fe, resta, potencia, division);
+
+                        grafico.Series["FO"].Points.AddXY(marcaClase, fo);
+                        grafico.Series["FE"].Points.AddXY(marcaClase, fe);
+
+                        desdeInt = desdeInt + tamaño_intervalo;
+
+                    }
+
+                    foreach (DataRow dr2 in dt.Rows)
+                    {
+                        suma = suma + Convert.ToDecimal(dr2["Division"]);
+                    }
+
+
+                }
+
+
+                if (rbdExponencial.Checked)
+                {
+                    // GDL = Intervalos - 1 - 1 dato empirico (lambda)
+                    grados_libertad = (Convert.ToDecimal(cantInt) - 1 - 1);
+
+                    Double potencia = 0;
+                    Double resta = 0;
+                    Double division = 0;
+
+                    dt = new System.Data.DataTable();
+                    dt.Columns.Add("Nro Intervalo", typeof(Decimal));
+                    dt.Columns.Add("Desde", typeof(Decimal));
+                    dt.Columns.Add("Hasta", typeof(Decimal));
+                    dt.Columns.Add("Marca de Clase", typeof(Decimal));
+                    dt.Columns.Add("fo", typeof(Decimal));
+                    dt.Columns.Add("fe", typeof(Decimal));
+                    dt.Columns.Add("Resta", typeof(Decimal));
+                    dt.Columns.Add("Potencia", typeof(Decimal));
+                    dt.Columns.Add("Division", typeof(Decimal));
+
+                    Double cantidad = Convert.ToDouble(txtCantidad.Text);
 
                     //lleno el vector de fo 
                     for (int i = 1; i <= cantInt; i++)
                     {
-                        Decimal hastaInt = desdeInt + tamaño_intervalo;
-                        Decimal fo = 0;
-                        Decimal marcaClase = (hastaInt + desdeInt) / 2;
+                        Double hastaInt = desdeInt + tamaño_intervalo;
+                        Double fo = 0;
+                        Double marcaClase = (hastaInt + desdeInt) / 2;
 
-                        Decimal acumMedia = 0;
+                        Double acumMedia = 0;
                         for (int j = 0; j < cantidad; j++)
                         {
-                            if (Convert.ToDecimal(lista[j]) < hastaInt && Convert.ToDecimal(lista[j]) >= desdeInt) //no incluye el limite superior
+                            if (Convert.ToDouble(lista[j]) < hastaInt && Convert.ToDouble(lista[j]) >= desdeInt) //no incluye el limite superior
                             {
                                 fo = fo + 1;
                             }
-                            acumMedia = acumMedia + Convert.ToDecimal(lista[j]);
+                            acumMedia = acumMedia + Convert.ToDouble(lista[j]);
 
                         }
-                        Decimal media = acumMedia / cantidad;
-                        Decimal lambda = 1 / media;
+                        Double media = acumMedia / cantidad;
+                        Double lambda = 1 / media;
 
 
-                        Decimal probAprox = 0;
-                        Decimal fe = 0;
+                        Double probAprox = 0;
+                        Double fe = 0;
+
                         for (int j = 0; j < Convert.ToInt32(txtCantidad.Text); j++)
                         {
-                            probAprox = Convert.ToDecimal((Convert.ToDouble(lambda) * Math.Exp(Convert.ToDouble((-1 * lambda) * Convert.ToDecimal(marcaClase))))) * tamaño_intervalo;
+                            probAprox = Convert.ToDouble((lambda * Math.Exp((-1 * lambda) * marcaClase))) * tamaño_intervalo;
                             fe = Math.Round((probAprox * cantidad), 4);
                         }
 
                         resta = fo - fe;
-                        potencia = Math.Round(Convert.ToDecimal(Math.Pow(Convert.ToDouble(resta), 2)), 4 );
+                        Double cuadrado = 2;
+                        potencia = Math.Round(Math.Pow(resta, cuadrado),4);
                         division = Math.Round((potencia / fe), 4);
 
                         dt.Rows.Add(i, desdeInt, hastaInt, marcaClase, fo, fe,resta,potencia,division);
@@ -184,42 +266,39 @@ namespace Practico3
                         desdeInt = desdeInt + tamaño_intervalo;
 
                     }
-                    
-               
+
                     foreach (DataRow dr2 in dt.Rows)
                     {
                         suma = suma + Convert.ToDecimal(dr2["Division"]);
                     }
-
-                   
                 }
 
 
                 if (rbdNormal.Checked)
                 {
-                    grados_libertad = (cantInt - 2);
-                    Decimal potencia = 0;
-                    Decimal resta = 0;
-                    Decimal division = 0;
+                    grados_libertad = (Convert.ToDecimal(cantInt) - 2);
+                    Double potencia = 0;
+                    Double resta = 0;
+                    Double division = 0;
                     //calculo media
-                    Decimal cantidad = Convert.ToDecimal(txtCantidad.Text);
-                    Decimal acumMedia = 0;
+                    Double cantidad = Convert.ToDouble(txtCantidad.Text);
+                    Double acumMedia = 0;
                     for (int i = 0; i < lista.Count; i++)
                     {
-                        acumMedia = lista[i] + acumMedia;
+                        acumMedia = Convert.ToDouble(lista[i]) + acumMedia;
                     }
-                    Decimal mediaNormal = acumMedia / cantidad;
+                    Double mediaNormal = acumMedia / cantidad;
 
                     //Calculo varianza
-                    Decimal sumaVar = 0;
+                    Double sumaVar = 0;
                     for (int i = 0; i < lista.Count; i++)
                     {
-                        Decimal resta_var = Math.Abs(lista[i] - mediaNormal);
-                        Decimal potencia_var = Convert.ToDecimal(Math.Pow(Convert.ToDouble(resta_var), 2));
+                        Double resta_var = Math.Abs(Convert.ToDouble(lista[i]) - mediaNormal);
+                        Double potencia_var = Convert.ToDouble(Math.Pow(Convert.ToDouble(resta_var), 2));
                         sumaVar = sumaVar + potencia_var;
                     }
-                    Decimal producto = (1 / (cantidad - 1)) * sumaVar;
-                    Decimal varianza = Convert.ToDecimal(Math.Sqrt(Convert.ToDouble(producto)));
+                    Double producto = (1 / (cantidad - 1)) * sumaVar;
+                    Double varianza = Convert.ToDouble(Math.Sqrt(Convert.ToDouble(producto)));
 
                     dt = new System.Data.DataTable();
                     dt.Columns.Add("Nro Intervalo", typeof(Decimal));
@@ -232,39 +311,37 @@ namespace Practico3
                     dt.Columns.Add("Potencia", typeof(Decimal));
                     dt.Columns.Add("Division", typeof(Decimal));
 
-
-
                     //lleno el vector de fo 
                     for (int i = 1; i <= cantInt; i++)
                     {
-                        Decimal hastaInt = desdeInt + tamaño_intervalo;
-                        Decimal fo = 0;
-                        Decimal fe = 0;
+                        Double hastaInt = desdeInt + tamaño_intervalo;
+                        Double fo = 0;
+                        Double fe = 0;
 
 
-                        Decimal marcaClase = (hastaInt + desdeInt) / 2;
+                        Double marcaClase = (hastaInt + desdeInt) / 2;
 
                         for (int j = 0; j < Convert.ToInt32(txtCantidad.Text); j++)
                         {
-                            if (Convert.ToDecimal(lista[j]) < hastaInt && Convert.ToDecimal(lista[j]) >= desdeInt) //no incluye el limite superior
+                            if (Convert.ToDouble(lista[j]) < hastaInt && Convert.ToDouble(lista[j]) >= desdeInt) //no incluye el limite superior
                             {
                                 fo = fo + 1;
                             }
                         }
 
-                        Decimal probAprox = 0;
-                       
+                        Double probAprox = 0;
 
-                        Decimal factor1 = 1 / (varianza * (Convert.ToDecimal(Math.Sqrt(2 * Math.PI))));
-                        Decimal exponente = Convert.ToDecimal(Math.Pow(Convert.ToDouble(((marcaClase - mediaNormal) / varianza)), 2));
-                        Decimal factor2 = Convert.ToDecimal(Math.Exp(Convert.ToDouble(Convert.ToDecimal(-0.5) * exponente)));
+
+                        Double factor1 = 1 / (varianza * (Convert.ToDouble(Math.Sqrt(2 * Math.PI))));
+                        Double exponente = Convert.ToDouble(Math.Pow(Convert.ToDouble(((marcaClase - mediaNormal) / varianza)), 2));
+                        Double factor2 = Convert.ToDouble(Math.Exp(Convert.ToDouble(Convert.ToDouble(-0.5) * exponente)));
 
                         probAprox = (factor1 * factor2) * tamaño_intervalo;
 
                         fe = Math.Round((probAprox * cantidad), 4);
 
                         resta = fo - fe;
-                        potencia = Math.Round(Convert.ToDecimal(Math.Pow(Convert.ToDouble(resta), 2)), 4);
+                        potencia = Math.Round(Convert.ToDouble(Math.Pow(Convert.ToDouble(resta), 2)), 4);
                         division = Math.Round((potencia / fe), 4);
 
                         dt.Rows.Add(i, desdeInt, hastaInt, marcaClase, fo, fe, resta, potencia, division);
@@ -284,11 +361,11 @@ namespace Practico3
                     
                 }
 
-
-
                 if (rbdPoisson.Checked)
                 {
-                    Decimal lamda = Convert.ToDecimal(txtLambda.Text);
+                    tamaño_intervalo = Math.Ceiling((maximo - minimo) / cantInt);
+
+                    Double lamda = Convert.ToDouble(txtLambda.Text);
                     Double potencia = 0;
                     Double resta = 0;
                     Double division = 0;
@@ -304,25 +381,22 @@ namespace Practico3
                     dt.Columns.Add("Potencia", typeof(Decimal));
                     dt.Columns.Add("Division", typeof(Decimal));
 
-
-
+                    Double frecuenciaEsperadaTotal = 0;
                     //lleno el vector de fo 
                     for (int i = 1; i <= cantInt; i++)
                     {
-                        Decimal hastaInt = Convert.ToDecimal(desdeInt + tamaño_intervalo);
+                        Double hastaInt = Convert.ToDouble(desdeInt + tamaño_intervalo);
                         Double fo = 0;
                         Double fe = 0;
-                        Decimal cantidad = Convert.ToDecimal(txtCantidad.Text);
+                        Double cantidad = Convert.ToDouble(txtCantidad.Text);
                         Double factor2 = 1;
-                        Decimal marcaClase = hastaInt + desdeInt / 2;
+                        Double marcaClase = Math.Floor((hastaInt + desdeInt) / 2);
 
-                        for (int j = 0; j < Convert.ToInt32(txtCantidad.Text); j++)
+                        for (int j = 0; j < cantidad; j++)
                         {
-                            if (Convert.ToDecimal(lista[j]) < hastaInt && Convert.ToDecimal(lista[j]) >= desdeInt) //no incluye el limite superior
+                            if (Convert.ToDouble(lista[j]) < hastaInt && Convert.ToDouble(lista[j]) >= desdeInt) //no incluye el limite superior
                             {
                                 fo = fo + 1;
-                                
-                               
                             }
                         }
 
@@ -331,7 +405,7 @@ namespace Practico3
                         Double factor1 = 0;
                         factor1 = Math.Pow(Math.E,Convert.ToDouble(-lamda)) * Math.Pow(Convert.ToDouble(lamda), Convert.ToDouble(marcaClase));
 
-                        for (int x = 1; x < marcaClase; x++)
+                        for (int x = 1; x <= marcaClase; x++)
                         {
                             factor2 = factor2 * x;
 
@@ -341,6 +415,7 @@ namespace Practico3
                         
 
                         fe = Math.Round((probAprox * Convert.ToDouble(cantidad)), 4);
+                        frecuenciaEsperadaTotal += fe;
 
                         resta = fo - fe;
                         potencia = Math.Round(Math.Pow(Convert.ToDouble(resta), 2), 4);
@@ -427,8 +502,14 @@ namespace Practico3
             {
                 throw new Exception("La cantidad de números no puede ser cero!");
             }
+            if (rbdUniforme.Checked)
+            {
+                if (txtAUniforme.Text == String.Empty)
+                    throw new Exception("Ingrese un valor para el parámetro 'a'");
+                if (txtBUniforme.Text == String.Empty)
+                    throw new Exception("Ingrese un valor para el parámetro 'b'");
+            }
 
-           
             if (rbdNormal.Checked)
             {
                 if (txtMediaNormal.Text == String.Empty)
@@ -461,7 +542,9 @@ namespace Practico3
             txtMediaExpo.Text = String.Empty;
             txtMediaNormal.Text = String.Empty;
             txtLambda.Text = String.Empty;
-            cbmIntervalos.SelectedItem = "5";
+            txtIntervalos.Text = "";
+            txtAUniforme.Text = "";
+            txtBUniforme.Text = "";
 
             listValores.Items.Clear();
 
@@ -485,6 +568,11 @@ namespace Practico3
         private void cbmIntervalos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void rbdUniforme_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlUniforme.Visible = true;
         }
     }
 }

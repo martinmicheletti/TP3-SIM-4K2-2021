@@ -94,3 +94,16 @@ C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constanti
 C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.csproj.CoreCompileInputs.cache
 C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.exe
 C:\PROYECTOS DEV\FACU\SIM\TP3_Constantini, Loza, Micheletti, Soaje\TP3_Constantini, Loza, Micheletti, Soaje\Practico3\obj\Debug\Practico3.pdb
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\bin\Debug\Practico3.exe.config
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\bin\Debug\Practico3.exe
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\bin\Debug\Practico3.pdb
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\obj\Debug\Practico3.csprojAssemblyReference.cache
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\obj\Debug\Practico3.Properties.Resources.resources
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\obj\Debug\Practico3.Test.resources
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\obj\Debug\Practico3.csproj.GenerateResource.cache
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\obj\Debug\Practico3.csproj.CoreCompileInputs.cache
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\obj\Debug\Practico3.exe
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\obj\Debug\Practico3.pdb
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\bin\Debug\System.ValueTuple.dll
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\bin\Debug\System.ValueTuple.xml
+C:\Users\Martin\Documents\UTN - FRC\2021\Simulacion\TP3-SIM-4K2-2021\Practico3\obj\Debug\Practico3.csproj.CopyComplete

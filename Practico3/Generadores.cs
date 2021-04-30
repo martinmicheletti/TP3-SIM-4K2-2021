@@ -66,19 +66,21 @@ namespace Practico3
         {
             List<Decimal> lista = new List<Decimal>();
             Random rnd=new Random();
+
             for (int j=0; j < cant; j++)
             {
                 Double a= Math.Pow((Math.E), Convert.ToDouble(-lambda));
-                Double b = 1;
-                Decimal i = -1;
+
+                Double p = 1;
+                Decimal x = -1;
                 do
                 {
                     Double xi = rnd.NextDouble();
-                    b = b * xi;
-                    i = i + 1;/////ver
+                    p = p * xi;
+                    x = x + 1;
                     
-                } while (b>a);
-                lista.Add(i);
+                } while (p>=a);
+                lista.Add(x);
             }
                 return lista;
         }

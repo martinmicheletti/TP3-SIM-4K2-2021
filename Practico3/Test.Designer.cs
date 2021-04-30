@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pnlPoisson = new System.Windows.Forms.Panel();
             this.txtLambda = new System.Windows.Forms.TextBox();
             this.lblLambda = new System.Windows.Forms.Label();
@@ -53,7 +53,6 @@
             this.btnTest = new System.Windows.Forms.Button();
             this.grafico = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.gvTest = new System.Windows.Forms.DataGridView();
-            this.cbmIntervalos = new System.Windows.Forms.ComboBox();
             this.lblIntervalos = new System.Windows.Forms.Label();
             this.lblRdo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -71,7 +70,14 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pnlUniforme = new System.Windows.Forms.Panel();
+            this.txtBUniforme = new System.Windows.Forms.TextBox();
+            this.txtAUniforme = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbdUniforme = new System.Windows.Forms.RadioButton();
+            this.txtIntervalos = new System.Windows.Forms.TextBox();
             this.pnlPoisson.SuspendLayout();
             this.pnlNormal.SuspendLayout();
             this.pnlExponencial.SuspendLayout();
@@ -82,6 +88,7 @@
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.pnlUniforme.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -199,7 +206,7 @@
             // 
             this.rbdPoisson.AutoSize = true;
             this.rbdPoisson.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbdPoisson.Location = new System.Drawing.Point(18, 33);
+            this.rbdPoisson.Location = new System.Drawing.Point(18, 78);
             this.rbdPoisson.Margin = new System.Windows.Forms.Padding(4);
             this.rbdPoisson.Name = "rbdPoisson";
             this.rbdPoisson.Size = new System.Drawing.Size(75, 20);
@@ -212,7 +219,7 @@
             // 
             this.rbdNormal.AutoSize = true;
             this.rbdNormal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbdNormal.Location = new System.Drawing.Point(18, 16);
+            this.rbdNormal.Location = new System.Drawing.Point(18, 61);
             this.rbdNormal.Margin = new System.Windows.Forms.Padding(4);
             this.rbdNormal.Name = "rbdNormal";
             this.rbdNormal.Size = new System.Drawing.Size(70, 20);
@@ -225,7 +232,7 @@
             // 
             this.rbdExponencial.AutoSize = true;
             this.rbdExponencial.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbdExponencial.Location = new System.Drawing.Point(18, 50);
+            this.rbdExponencial.Location = new System.Drawing.Point(18, 97);
             this.rbdExponencial.Margin = new System.Windows.Forms.Padding(4);
             this.rbdExponencial.Name = "rbdExponencial";
             this.rbdExponencial.Size = new System.Drawing.Size(100, 20);
@@ -268,21 +275,21 @@
             // 
             // grafico
             // 
-            chartArea1.Name = "ChartArea1";
-            this.grafico.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.grafico.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.grafico.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.grafico.Legends.Add(legend3);
             this.grafico.Location = new System.Drawing.Point(0, 0);
             this.grafico.Name = "grafico";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "FO";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "FE";
-            this.grafico.Series.Add(series1);
-            this.grafico.Series.Add(series2);
-            this.grafico.Size = new System.Drawing.Size(1100, 484);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "FO";
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "FE";
+            this.grafico.Series.Add(series5);
+            this.grafico.Series.Add(series6);
+            this.grafico.Size = new System.Drawing.Size(1103, 433);
             this.grafico.TabIndex = 3;
             this.grafico.Text = "chart1";
             // 
@@ -291,23 +298,8 @@
             this.gvTest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvTest.Location = new System.Drawing.Point(0, 107);
             this.gvTest.Name = "gvTest";
-            this.gvTest.Size = new System.Drawing.Size(1110, 380);
+            this.gvTest.Size = new System.Drawing.Size(1103, 329);
             this.gvTest.TabIndex = 2;
-            // 
-            // cbmIntervalos
-            // 
-            this.cbmIntervalos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbmIntervalos.FormattingEnabled = true;
-            this.cbmIntervalos.Items.AddRange(new object[] {
-            "5",
-            "10",
-            "15",
-            "20"});
-            this.cbmIntervalos.Location = new System.Drawing.Point(234, 59);
-            this.cbmIntervalos.Name = "cbmIntervalos";
-            this.cbmIntervalos.Size = new System.Drawing.Size(115, 21);
-            this.cbmIntervalos.TabIndex = 1;
-            this.cbmIntervalos.SelectedIndexChanged += new System.EventHandler(this.cbmIntervalos_SelectedIndexChanged);
             // 
             // lblIntervalos
             // 
@@ -345,7 +337,7 @@
             this.listValores.Location = new System.Drawing.Point(0, 0);
             this.listValores.MultiColumn = true;
             this.listValores.Name = "listValores";
-            this.listValores.Size = new System.Drawing.Size(1113, 485);
+            this.listValores.Size = new System.Drawing.Size(1106, 433);
             this.listValores.TabIndex = 24;
             // 
             // label3
@@ -423,10 +415,10 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(12, 134);
+            this.tabControl1.Location = new System.Drawing.Point(12, 185);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1114, 513);
+            this.tabControl1.Size = new System.Drawing.Size(1114, 462);
             this.tabControl1.TabIndex = 32;
             // 
             // tabPage1
@@ -435,7 +427,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1106, 487);
+            this.tabPage1.Size = new System.Drawing.Size(1106, 436);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Variables";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -454,7 +446,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1106, 487);
+            this.tabPage2.Size = new System.Drawing.Size(1106, 436);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Test de Chi Cuadrado";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -465,7 +457,7 @@
             this.tabPage3.Controls.Add(this.grafico);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1106, 487);
+            this.tabPage3.Size = new System.Drawing.Size(1106, 436);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Gráfico";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -478,10 +470,12 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(108, 24);
             this.label6.TabIndex = 33;
-            this.label6.Text = "4K4 - 2020";
+            this.label6.Text = "4K2 - 2021";
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtIntervalos);
+            this.groupBox1.Controls.Add(this.pnlUniforme);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.lblCantidad);
             this.groupBox1.Controls.Add(this.btnLimpiar);
@@ -490,26 +484,89 @@
             this.groupBox1.Controls.Add(this.txtCantidad);
             this.groupBox1.Controls.Add(this.pnlExponencial);
             this.groupBox1.Controls.Add(this.pnlPoisson);
-            this.groupBox1.Controls.Add(this.cbmIntervalos);
             this.groupBox1.Controls.Add(this.lblIntervalos);
             this.groupBox1.Location = new System.Drawing.Point(12, 36);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1122, 98);
+            this.groupBox1.Size = new System.Drawing.Size(1122, 143);
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parámetros";
             // 
+            // pnlUniforme
+            // 
+            this.pnlUniforme.Controls.Add(this.txtBUniforme);
+            this.pnlUniforme.Controls.Add(this.txtAUniforme);
+            this.pnlUniforme.Controls.Add(this.label8);
+            this.pnlUniforme.Controls.Add(this.label9);
+            this.pnlUniforme.Location = new System.Drawing.Point(549, 86);
+            this.pnlUniforme.Name = "pnlUniforme";
+            this.pnlUniforme.Size = new System.Drawing.Size(410, 57);
+            this.pnlUniforme.TabIndex = 20;
+            // 
+            // txtBUniforme
+            // 
+            this.txtBUniforme.Location = new System.Drawing.Point(283, 13);
+            this.txtBUniforme.Name = "txtBUniforme";
+            this.txtBUniforme.Size = new System.Drawing.Size(100, 20);
+            this.txtBUniforme.TabIndex = 3;
+            // 
+            // txtAUniforme
+            // 
+            this.txtAUniforme.Location = new System.Drawing.Point(84, 13);
+            this.txtAUniforme.Name = "txtAUniforme";
+            this.txtAUniforme.Size = new System.Drawing.Size(100, 20);
+            this.txtAUniforme.TabIndex = 2;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(248, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(13, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "b";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(38, 16);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(13, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "a";
+            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.rbdUniforme);
             this.groupBox2.Controls.Add(this.rbdNormal);
             this.groupBox2.Controls.Add(this.rbdExponencial);
             this.groupBox2.Controls.Add(this.rbdPoisson);
             this.groupBox2.Location = new System.Drawing.Point(381, 13);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(126, 79);
+            this.groupBox2.Size = new System.Drawing.Size(126, 124);
             this.groupBox2.TabIndex = 31;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Distribución";
+            // 
+            // rbdUniforme
+            // 
+            this.rbdUniforme.AutoSize = true;
+            this.rbdUniforme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbdUniforme.Location = new System.Drawing.Point(18, 33);
+            this.rbdUniforme.Margin = new System.Windows.Forms.Padding(4);
+            this.rbdUniforme.Name = "rbdUniforme";
+            this.rbdUniforme.Size = new System.Drawing.Size(80, 20);
+            this.rbdUniforme.TabIndex = 15;
+            this.rbdUniforme.Text = "Uniforme";
+            this.rbdUniforme.UseVisualStyleBackColor = true;
+            this.rbdUniforme.CheckedChanged += new System.EventHandler(this.Test_Load);
+            // 
+            // txtIntervalos
+            // 
+            this.txtIntervalos.Location = new System.Drawing.Point(234, 60);
+            this.txtIntervalos.Name = "txtIntervalos";
+            this.txtIntervalos.Size = new System.Drawing.Size(115, 20);
+            this.txtIntervalos.TabIndex = 32;
             // 
             // Test
             // 
@@ -539,6 +596,8 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.pnlUniforme.ResumeLayout(false);
+            this.pnlUniforme.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -569,7 +628,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataVisualization.Charting.Chart grafico;
         private System.Windows.Forms.DataGridView gvTest;
-        private System.Windows.Forms.ComboBox cbmIntervalos;
         private System.Windows.Forms.Label lblIntervalos;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.ListBox listValores;
@@ -588,5 +646,12 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton rbdUniforme;
+        private System.Windows.Forms.Panel pnlUniforme;
+        private System.Windows.Forms.TextBox txtBUniforme;
+        private System.Windows.Forms.TextBox txtAUniforme;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtIntervalos;
     }
 }
