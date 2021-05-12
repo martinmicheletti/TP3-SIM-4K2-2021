@@ -127,6 +127,8 @@ namespace Practico3
                     cantInt = maximo - minimo;
                 }
 
+                Double cantidadIntervalosReales = 0;
+
                 Double longitud = maximo - minimo;
                 Double tamaño_intervalo = Math.Round((longitud / cantInt), 6);
                 Double desdeInt = minimo;
@@ -135,8 +137,7 @@ namespace Practico3
 
                 if (rbdUniforme.Checked)
                 {
-                    grados_libertad = (Convert.ToDouble(cantInt) - 1);
-
+                   
                     Double potencia = 0;
                     Double resta = 0;
                     Double division = 0;
@@ -164,10 +165,15 @@ namespace Practico3
                     dt.Columns.Add("Potencia", typeof(Double));
                     dt.Columns.Add("Division", typeof(Double));
 
-                    //lleno el vector de fo 
+                    Double tamañoIntervaloAcumulado = 0;
+                    Double filasAcumuladas = 0;     
+
+                    // lleno el vector de fo 
+                    // For principal, recorre cada fila por cada intervalo
                     for (int i = 1; i <= cantInt; i++)
                     {
-                        Double hastaInt = desdeInt + tamaño_intervalo;
+                        
+                        Double hastaInt = desdeInt + tamaño_intervalo + tamañoIntervaloAcumulado;
                         Double fo = 0;
                         Double fe = 0;
 
@@ -175,39 +181,53 @@ namespace Practico3
 
                         for (int j = 0; j < cantidad; j++)
                         {
-                            if (Convert.ToDouble(lista[j]) < hastaInt && Convert.ToDouble(lista[j]) >= desdeInt) //no incluye el limite superior
+                            // Si el valor se encuentra entre los limites
+                            // no incluye el limite superior
+                            if (Convert.ToDouble(lista[j]) < hastaInt && Convert.ToDouble(lista[j]) >= desdeInt)
                             {
-                                fo = fo + 1;
+                                fo += 1;
                             }
                         }
 
-                        Double funcionDensidad = 1 / (b - a);
+                        // Si la frecuencia observada es menor a 5,
+                        // se suma con otro intervalo
+                        if (fo < 5)
+                        {
+                            filasAcumuladas += 1;
+                            tamañoIntervaloAcumulado += tamaño_intervalo;
+                        } else
+                        {
+                            Double funcionDensidad = 1 / (b - a);
 
-                        fe = (Math.Round((funcionDensidad * Convert.ToDouble(tamaño_intervalo)), 4)) * cantidad;
-                        resta = fo - fe;
-                        potencia = Math.Round(Convert.ToDouble(Math.Pow(Convert.ToDouble(resta), 2)), 4);
-                        division = Math.Round((potencia / fe), 4);
+                            fe = (Math.Round((funcionDensidad * Convert.ToDouble(tamaño_intervalo + tamañoIntervaloAcumulado)), 4)) * cantidad;
+                            resta = fo - fe;
+                            potencia = Math.Round(Convert.ToDouble(Math.Pow(Convert.ToDouble(resta), 2)), 4);
+                            division = Math.Round((potencia / fe), 4);
 
-                        dt.Rows.Add(i, desdeInt, hastaInt, marcaClase, fo, fe, resta, potencia, division);
+                            dt.Rows.Add(cantidadIntervalosReales+1, desdeInt, hastaInt, marcaClase, fo, fe, resta, potencia, division);
 
-                        grafico.Series["FO"].Points.AddXY(marcaClase, fo);
-                        grafico.Series["FE"].Points.AddXY(marcaClase, fe);
+                            grafico.Series["FO"].Points.AddXY(Math.Round(marcaClase, 2), fo);
+                            grafico.Series["FE"].Points.AddXY(Math.Round(marcaClase, 2), fe);
 
-                        desdeInt = desdeInt + tamaño_intervalo;
+                            desdeInt = desdeInt + tamaño_intervalo + tamañoIntervaloAcumulado;
 
+                            filasAcumuladas = 0;
+                            tamañoIntervaloAcumulado = 0;
+                            cantidadIntervalosReales += 1;
+                        }
                     }
 
                     foreach (DataRow dr2 in dt.Rows)
                     {
                         suma = suma + Convert.ToDouble(dr2["Division"]);
                     }
+
+                    grados_libertad = (Convert.ToDouble(cantidadIntervalosReales) - 1);
                 }
 
                 if (rbdExponencial.Checked)
                 {
-                    // GDL = Intervalos - 1 - 1 dato empirico (lambda)
-                    grados_libertad = (Convert.ToDouble(cantInt) - 1 - 1);
-
+                    
                     Double potencia = 0;
                     Double resta = 0;
                     Double division = 0;
@@ -225,10 +245,13 @@ namespace Practico3
 
                     Double cantidad = Convert.ToDouble(txtCantidad.Text);
 
+                    Double tamañoIntervaloAcumulado = 0;
+                    Double filasAcumuladas = 0;
+
                     //lleno el vector de fo 
                     for (int i = 1; i <= cantInt; i++)
                     {
-                        Double hastaInt = desdeInt + tamaño_intervalo;
+                        Double hastaInt = desdeInt + tamaño_intervalo + tamañoIntervaloAcumulado;
                         Double fo = 0;
                         Double marcaClase = (hastaInt + desdeInt) / 2;
 
@@ -243,39 +266,55 @@ namespace Practico3
                             acumMedia = acumMedia + Convert.ToDouble(lista[j]);
                         }
 
-                        Double media = acumMedia / cantidad;
-                        Double lambda = 1 / media;
-                        Double probAprox = 0;
-                        Double fe = 0;
-
-                        for (int j = 0; j < Convert.ToInt32(txtCantidad.Text); j++)
+                        if (fo < 5)
                         {
-                            probAprox = Convert.ToDouble((lambda * Math.Exp((-1 * lambda) * marcaClase))) * tamaño_intervalo;
-                            fe = Math.Round((probAprox * cantidad), 4);
+                            filasAcumuladas += 1;
+                            tamañoIntervaloAcumulado += tamaño_intervalo;
                         }
+                        else
+                        {
 
-                        resta = fo - fe;
-                        Double cuadrado = 2;
-                        potencia = Math.Round(Math.Pow(resta, cuadrado),4);
-                        division = Math.Round((potencia / fe), 4);
+                            Double media = acumMedia / cantidad;
+                            Double lambda = 1 / media;
+                            Double probAprox = 0;
+                            Double fe = 0;
 
-                        dt.Rows.Add(i, desdeInt, hastaInt, marcaClase, fo, fe,resta,potencia,division);
+                            for (int j = 0; j < Convert.ToInt32(txtCantidad.Text); j++)
+                            {
+                                probAprox = Convert.ToDouble((lambda * Math.Exp((-1 * lambda) * marcaClase))) * (tamaño_intervalo + tamañoIntervaloAcumulado);
+                                fe = Math.Round((probAprox * cantidad), 4);
+                            }
 
-                        grafico.Series["FO"].Points.AddXY(marcaClase, fo);
-                        grafico.Series["FE"].Points.AddXY(marcaClase, fe);
+                            resta = fo - fe;
+                            Double cuadrado = 2;
+                            potencia = Math.Round(Math.Pow(resta, cuadrado), 4);
+                            division = Math.Round((potencia / fe), 4);
 
-                        desdeInt = desdeInt + tamaño_intervalo;
+                            dt.Rows.Add(cantidadIntervalosReales+1, desdeInt, hastaInt, marcaClase, fo, fe, resta, potencia, division);
+
+                            grafico.Series["FO"].Points.AddXY(Math.Round(marcaClase, 2), fo);
+                            grafico.Series["FE"].Points.AddXY(Math.Round(marcaClase, 2), fe);
+
+                            desdeInt = desdeInt + tamaño_intervalo + tamañoIntervaloAcumulado;
+
+                            filasAcumuladas = 0;
+                            tamañoIntervaloAcumulado = 0;
+                            cantidadIntervalosReales += 1;
+                        }
                     }
 
                     foreach (DataRow dr2 in dt.Rows)
                     {
                         suma = suma + Convert.ToDouble(dr2["Division"]);
                     }
+
+                    // GDL = Intervalos - 1 - 1 dato empirico (lambda)
+                    grados_libertad = (Convert.ToDouble(cantidadIntervalosReales) - 1 - 1);
                 }
 
                 if (rbdNormal.Checked)
                 {
-                    grados_libertad = (Convert.ToDouble(cantInt) - 2);
+                    
                     Double potencia = 0;
                     Double resta = 0;
                     Double division = 0;
@@ -315,10 +354,13 @@ namespace Practico3
                     dt.Columns.Add("Potencia", typeof(Double));
                     dt.Columns.Add("Division", typeof(Double));
 
+                    Double tamañoIntervaloAcumulado = 0;
+                    Double filasAcumuladas = 0;
+
                     //lleno el vector de fo 
                     for (int i = 1; i <= cantInt; i++)
                     {
-                        Double hastaInt = desdeInt + tamaño_intervalo;
+                        Double hastaInt = desdeInt + tamaño_intervalo + tamañoIntervaloAcumulado;
                         Double fo = 0;
                         Double fe = 0;
                         Double marcaClase = (hastaInt + desdeInt) / 2;
@@ -331,37 +373,50 @@ namespace Practico3
                             }
                         }
 
-                        Double probAprox = 0;
-                        Double factor1 = 1 / (varianza * (Convert.ToDouble(Math.Sqrt(2 * Math.PI))));
-                        Double exponente = Convert.ToDouble(Math.Pow(Convert.ToDouble(((marcaClase - mediaNormal) / varianza)), 2));
-                        Double factor2 = Convert.ToDouble(Math.Exp(Convert.ToDouble(Convert.ToDouble(-0.5) * exponente)));
+                        if (fo < 5)
+                        {
+                            filasAcumuladas += 1;
+                            tamañoIntervaloAcumulado += tamaño_intervalo;
+                        }
+                        else
+                        {
+                            Double probAprox = 0;
+                            Double factor1 = 1 / (varianza * (Convert.ToDouble(Math.Sqrt(2 * Math.PI))));
+                            Double exponente = Convert.ToDouble(Math.Pow(Convert.ToDouble(((marcaClase - mediaNormal) / varianza)), 2));
+                            Double factor2 = Convert.ToDouble(Math.Exp(Convert.ToDouble(Convert.ToDouble(-0.5) * exponente)));
 
-                        probAprox = (factor1 * factor2) * tamaño_intervalo;
+                            probAprox = (factor1 * factor2) * (tamaño_intervalo + tamañoIntervaloAcumulado);
 
-                        fe = Math.Round((probAprox * cantidad), 4);
+                            fe = Math.Round((probAprox * cantidad), 4);
 
-                        resta = fo - fe;
-                        potencia = Math.Round(Convert.ToDouble(Math.Pow(Convert.ToDouble(resta), 2)), 4);
-                        division = Math.Round((potencia / fe), 4);
+                            resta = fo - fe;
+                            potencia = Math.Round(Convert.ToDouble(Math.Pow(Convert.ToDouble(resta), 2)), 4);
+                            division = Math.Round((potencia / fe), 4);
 
-                        dt.Rows.Add(i, desdeInt, hastaInt, marcaClase, fo, fe, resta, potencia, division);
+                            dt.Rows.Add(cantidadIntervalosReales + 1, desdeInt, hastaInt, marcaClase, fo, fe, resta, potencia, division);
 
-                        grafico.Series["FO"].Points.AddXY(marcaClase, fo);
-                        grafico.Series["FE"].Points.AddXY(marcaClase, fe);
+                            grafico.Series["FO"].Points.AddXY(Math.Round(marcaClase, 2), fo);
+                            grafico.Series["FE"].Points.AddXY(Math.Round(marcaClase, 2), fe);
 
-                        desdeInt = desdeInt + tamaño_intervalo;
+                            desdeInt = desdeInt + tamaño_intervalo + tamañoIntervaloAcumulado;
 
+                            filasAcumuladas = 0;
+                            tamañoIntervaloAcumulado = 0;
+                            cantidadIntervalosReales += 1;
+                        }
                     }
 
                     foreach (DataRow dr2 in dt.Rows)
                     {
                         suma = suma + Convert.ToDouble(dr2["Division"]);
-                    } 
+                    }
+
+                    grados_libertad = (Convert.ToDouble(cantidadIntervalosReales) - 1 - 2);
                 }
 
                 if (rbdPoisson.Checked)
                 {
-                    grados_libertad = (Convert.ToDouble(cantInt) - 2);
+                    
                     //tamaño_intervalo = Math.Ceiling((maximo - minimo) / cantInt);
 
                     tamaño_intervalo = 1;
@@ -382,11 +437,14 @@ namespace Practico3
                     dt.Columns.Add("Potencia", typeof(Double));
                     dt.Columns.Add("Division", typeof(Double));
 
+                    Double tamañoIntervaloAcumulado = 0;
+                    Double filasAcumuladas = 0;
+
                     Double frecuenciaEsperadaTotal = 0;
                     //lleno el vector de fo 
                     for (int i = 1; i <= cantInt; i++)
                     {
-                        Double hastaInt = Convert.ToDouble(desdeInt + tamaño_intervalo);
+                        Double hastaInt = Convert.ToDouble(desdeInt + tamaño_intervalo + tamañoIntervaloAcumulado);
                         Double fo = 0;
                         Double fe = 0;
                         Double cantidad = Convert.ToDouble(txtCantidad.Text);
@@ -401,38 +459,52 @@ namespace Practico3
                             }
                         }
 
-                        Double probAprox = 0;
-
-                        Double factor1 = 0;
-                        factor1 = Math.Pow(Math.E,Convert.ToDouble(-lamda)) * Math.Pow(Convert.ToDouble(lamda), Convert.ToDouble(marcaClase));
-
-                        for (int x = 1; x <= marcaClase; x++)
+                        if (fo < 5)
                         {
-                            factor2 = factor2 * x;
+                            filasAcumuladas += 1;
+                            tamañoIntervaloAcumulado += tamaño_intervalo;
                         }
-
-                        probAprox = factor1 / factor2;
-                        
-                        fe = Math.Round((probAprox * Convert.ToDouble(cantidad)), 4);
-                        frecuenciaEsperadaTotal += fe;
-
-                        resta = fo - fe;
-                        potencia = Math.Round(Math.Pow(Convert.ToDouble(resta), 2), 4);
-
-                        if (fe == 0)
+                        else
                         {
-                            division = 0;
-                        } else
-                        {
-                            division = Math.Round((potencia / fe), 4);
+                            Double probAprox = 0;
+
+                            Double factor1 = 0;
+                            factor1 = Math.Pow(Math.E, Convert.ToDouble(-lamda)) * Math.Pow(Convert.ToDouble(lamda), Convert.ToDouble(marcaClase));
+
+                            for (int x = 1; x <= marcaClase; x++)
+                            {
+                                factor2 = factor2 * x;
+                            }
+
+                            probAprox = factor1 / factor2;
+
+                            fe = Math.Round((probAprox * Convert.ToDouble(cantidad)), 4);
+
+                            frecuenciaEsperadaTotal += fe;
+
+                            resta = fo - fe;
+                            potencia = Math.Round(Math.Pow(Convert.ToDouble(resta), 2), 4);
+
+                            if (fe == 0)
+                            {
+                                division = 0;
+                            }
+                            else
+                            {
+                                division = Math.Round((potencia / fe), 4);
+                            }
+
+                            dt.Rows.Add(cantidadIntervalosReales+1, desdeInt, hastaInt, marcaClase, fo, fe, resta, potencia, division);
+
+                            grafico.Series["FO"].Points.AddXY(Math.Round(marcaClase, 2), fo);
+                            grafico.Series["FE"].Points.AddXY(Math.Round(marcaClase, 2), fe);
+
+                            desdeInt = desdeInt + tamaño_intervalo + tamañoIntervaloAcumulado;
+
+                            filasAcumuladas = 0;
+                            tamañoIntervaloAcumulado = 0;
+                            cantidadIntervalosReales += 1;
                         }
-                       
-                        dt.Rows.Add(i, desdeInt, hastaInt, marcaClase, fo, fe, resta, potencia, division);
-
-                        grafico.Series["FO"].Points.AddXY(marcaClase, fo);
-                        grafico.Series["FE"].Points.AddXY(marcaClase, fe);
-
-                        desdeInt = desdeInt + tamaño_intervalo;
                     }
 
                     foreach (DataRow dr2 in dt.Rows)
@@ -441,6 +513,8 @@ namespace Practico3
                     }
 
                     dt.Rows.Add(0,0,0,0,0,frecuenciaEsperadaTotal,0,0,0);
+
+                    grados_libertad = (Convert.ToDouble(cantidadIntervalosReales) - 2);
                 }
 
                 Double xCalculado = Convert.ToDouble(Math.Round(suma, 6));
